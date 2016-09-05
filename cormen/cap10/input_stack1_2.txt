@@ -1,0 +1,10 @@
+add
+10
+add
+1
+add
+30
+add
+45
+show
+end

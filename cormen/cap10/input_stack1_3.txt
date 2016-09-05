@@ -1,0 +1,13 @@
+add
+10
+show
+add
+1
+show
+add
+30
+show
+add
+45
+show
+end
