@@ -28,7 +28,7 @@ int main (void){
 		if(command.compare("end")==0)
 			return 0;
 		
-		/*Including an element into the stack.*/
+		/*Including an element onto the stack.*/
 		if(command.compare("add")==0){
 			//TODO: I still have to verify if the next input is integer and/or a number
 			int input;
