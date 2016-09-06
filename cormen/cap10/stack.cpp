@@ -17,7 +17,7 @@ int main (void){
 	int stack[SIZE];
 
 	/* Counting the number of elements in the stack. */
-	int size=0;
+	int top=0;
 
 	/* This variable receives the commands to be parsed. */
  	string command;
@@ -33,49 +33,49 @@ int main (void){
 			//TODO: I still have to verify if the next input is integer and/or a number
 			int input;
 			cin>>input;
-			push(input, stack, &size);						
+			push(input, stack, &top);						
 		}
 
 		/* Remove an element from stack*/
 		if(command.compare("rem")==0)
-			pop(stack, &size);
+			pop(stack, &top);
 	
 		/* Print the stack at that moment. */
 		if(command.compare("show")==0)
-			printStack(stack, size);
+			printStack(stack, top);
 			
 	}
 
 	return 0;
 }
 
-void printStack(int stack[], int size){
+void printStack(int stack[], int top){
 	printf("# Elements of the stack #\n");
-	for(int i=0; i<size; i++){
+	for(int i=0; i<top; i++){
 		printf("Position: %d Value: %d\n", i, stack[i]);
 	}
 }
 
-void showStack(int stack[], int size){
+void showStack(int stack[], int top){
 	printf("### Showing Stack ###\n");
-	for(int i = size; i<0;i--)
+	for(int i = top; i<0;i--)
 		printf("| %d |\n", stack[i]);
 	printf("\n");
 }
 
-void push (int element, int* stack, int* size){
-	stack[*size]=element;
-	*size+=1;
+void push (int element, int* stack, int* top){
+	stack[*top]=element;
+	*top+=1;
 }
 
-void pop(int* stack, int* size){
-	if(*size>=1){
-		stack[*size-1]=INT_MIN;
-		*size-=1;
+void pop(int* stack, int* top){
+	if(*top >= 1){
+		stack[*top-1]=INT_MIN;
+		*top-=1;
 	}	
 }
 
-void printArray(int stack[], int size){
+void printArray(int stack[], int top){
 	/*
 	  Note to anyone reading this piece of code:
 	  I am aware that it is not a valid operation for stacks.
