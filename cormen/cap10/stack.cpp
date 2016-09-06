@@ -64,12 +64,14 @@ void showStack(int stack[], int top){
 }
 
 void push (int element, int* stack, int* top){
-	stack[*top]=element;
-	*top+=1;
+	if(*top<100){
+		stack[*top]=element;
+		*top+=1;
+	}
 }
 
 void pop(int* stack, int* top){
-	if(*top >= 1){
+	if(*top > 0){
 		stack[*top-1]=INT_MIN;
 		*top-=1;
 	}	
