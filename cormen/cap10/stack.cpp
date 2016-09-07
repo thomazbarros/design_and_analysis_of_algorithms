@@ -7,7 +7,7 @@
 using namespace std;
 
 void push (int element, int* stack, int* size);
-void pop(int* stack, int* size);
+int pop(int* stack, int* size);
 void printStack(int stack[], int size);
 void showStack(int stack[], int size);
 
@@ -17,7 +17,7 @@ int main (void){
 	int stack[SIZE];
 
 	/* Counting the number of elements in the stack. */
-	int top=0;
+	int top=-1;
 
 	/* This variable receives the commands to be parsed. */
  	string command;
@@ -25,25 +25,37 @@ int main (void){
 	while (1){
 		cin>>command;
 		/*End of the program. */
-		if(command.compare("end")==0)
+		if(command.compare("end")==0){
+			cout<<"Command: END"<<endl;
 			return 0;
-		
+		}
+
 		/*Including an element onto the stack.*/
 		if(command.compare("add")==0){
+			cout<<"Command: ADD"<<endl;
 			//TODO: I still have to verify if the next input is integer and/or a number
 			int input;
 			cin>>input;
-			push(input, stack, &top);						
+			push(input, stack, &top);
+			printStack(stack, top);	
+			cout<<"##############"<<endl;
 		}
 
 		/* Remove an element from stack*/
-		if(command.compare("rem")==0)
-			pop(stack, &top);
-	
-		/* Print the stack at that moment. */
-		if(command.compare("show")==0)
+		if(command.compare("rem")==0){
+			cout<<"Command: REM"<<endl;
+			cout<<pop(stack,&top)<<" was popped from the stack."<<endl;
 			printStack(stack, top);
-			
+			cout<<"##############"<<endl;
+			//printf("Element %d was popped from the stack. \n", pop(stack, &top));
+		}
+
+		/* Print the stack at that moment. */
+		if(command.compare("show")==0){
+			cout<<"Command: SHOW"<<endl;
+			printStack(stack, top);
+			cout<<"##############"<<endl;
+		}
 	}
 
 	return 0;
@@ -51,7 +63,7 @@ int main (void){
 
 void printStack(int stack[], int top){
 	printf("# Elements of the stack #\n");
-	for(int i=0; i<top; i++){
+	for(int i=0; i<=top; i++){
 		printf("Position: %d Value: %d\n", i, stack[i]);
 	}
 }
@@ -65,16 +77,18 @@ void showStack(int stack[], int top){
 
 void push (int element, int* stack, int* top){
 	if(*top<100){
-		stack[*top]=element;
 		*top+=1;
+		stack[*top]=element;
 	}
 }
 
-void pop(int* stack, int* top){
+int pop(int* stack, int* top){
 	if(*top > 0){
-		stack[*top-1]=INT_MIN;
-		*top-=1;
-	}	
+		*top = *top - 1;
+		//cout<<*top+1<<endl;
+		return stack[*top+1];
+	}else
+		return INT_MIN;	
 }
 
 void printArray(int stack[], int top){
